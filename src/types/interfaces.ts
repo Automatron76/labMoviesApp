@@ -26,6 +26,10 @@ export interface BaseMovieProps {
       id: number;
       name: string;
     }[];
+    productionCountry: {
+      id: number;
+      production_country: string;
+    }[];
   }
 
   export interface MovieImage {
