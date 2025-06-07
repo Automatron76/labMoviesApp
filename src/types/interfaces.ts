@@ -26,9 +26,9 @@ export interface BaseMovieProps {
       id: number;
       name: string;
     }[];
-    productionCountry: {
-      id: number;
-      production_country: string;
+    production_countries: {
+       iso_3166_1: string,
+       name: string      
     }[];
   }
 

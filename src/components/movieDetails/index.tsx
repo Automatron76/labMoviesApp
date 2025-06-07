@@ -61,13 +61,13 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                 <li>
                     <Chip label="Production countries" sx={styles.chipLabel} color="primary" />
                 </li>
-                {movie.productionCountry.map((g) => (
-                    <li key={g.production_country}>
-                        <Chip label={g.production_country} />
+                {movie.production_countries.map((country) => (
+                    <li key={country.iso_3166_1}>
+                        <Chip label={country.name} />
                     </li>
                 ))}
                 
-            </Paper>
+           </Paper>
         </>
     );
 };
