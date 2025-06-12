@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { MovieDetailsProps, MovieImage} from "../types/interfaces";
-import { MoviePageProps} from "../types/interfaces";
+// import { MoviePageProps} from "../types/interfaces";
 import { getMovie, getMovieImages } from "../api/tmdb-api";
 
 const styles = {
