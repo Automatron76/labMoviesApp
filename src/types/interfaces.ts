@@ -20,7 +20,12 @@ export interface BaseMovieProps {
 
   export type FilterOption = "title" | "genre";
 
-  
+    export interface Review{
+    id: string;
+    content: string
+    author: string
+  }
+
   
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
