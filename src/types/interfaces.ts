@@ -41,6 +41,13 @@ export interface DiscoverMovies {
     author: string
   }
 
+    export interface Review {
+    author: string,
+    content: string,
+    agree: boolean,
+    rating: number,
+    movieId: number,
+  }
   
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
