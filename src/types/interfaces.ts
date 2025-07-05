@@ -55,6 +55,7 @@ export interface DiscoverMovies {
   }
   export interface MovieListPageTemplateProps extends BaseMovieListProps {
     title: string;
+    selectFavourite?: (movieId: number) => void; // Add this line
   }
   export interface MovieDetailsProps extends BaseMovieProps {
     genres: {

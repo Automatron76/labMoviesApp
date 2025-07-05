@@ -26,20 +26,17 @@ export const getMovies = () => {
  });
 };
 
-  export const getUpcomingMovies = (  ) => {
-    const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZTUyOTI3YWEzY2RmMjk1ODllMjk2OTk0NWQ2MzgwNiIsIm5iZiI6MTc0OTA1NjQ3MC44ODMwMDAxLCJzdWIiOiI2ODQwN2JkNjg5Njg4YjY2MDNmZGMzNGEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.UErwyHHW0RRPwLEUeIx8kFBJyzETMO3oDpStxq3KhEs'
-  }
+export const getUpcomingMovies = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1&region=IE`
+  )
+    .then(res => res.json())
+    .then(data => data.results || [])
+    .catch(err => {
+      console.error("API Error:", err);
+      return [];
+    });
 };
-
-fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
-  .then(res => res.json())
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
-  };
   
   export const getGenres = () => {
   return fetch(

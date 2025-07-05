@@ -7,6 +7,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
+import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 
 const titleFiltering = {
   name: "title",
@@ -45,7 +46,7 @@ const UpcomingMoviesPage: React.FC = () => {
   };
 
   useEffect(() => {
-    getUpcomingMovies().then(movies => {
+    getUpcomingMovies().then((movies: BaseMovieProps[]) => {
       setMovies(movies);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,9 +55,11 @@ const UpcomingMoviesPage: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title='Upcoming Movies'
+        title="Discover Movies"
         movies={displayedMovies}
-        selectFavourite={addToFavourites}
+        action={(movie: BaseMovieProps) => {
+          return <AddToFavouritesIcon {...movie} />
+        }}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
