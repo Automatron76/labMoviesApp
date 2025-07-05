@@ -7,7 +7,8 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
+ import AddToMustWatchIcon from "../components/mustWatch/addToMustWatch";
+
 
 const titleFiltering = {
   name: "title",
@@ -23,9 +24,13 @@ const genreFiltering = {
 const UpcomingMoviesPage: React.FC = () => {
   const [movies, setMovies] = useState<BaseMovieProps[]>([]);
   const favourites = movies.filter(m => m.favourite)
+
+  
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
+
+
 
   localStorage.setItem('favourites', JSON.stringify(favourites))
   // New function
@@ -35,6 +40,8 @@ const UpcomingMoviesPage: React.FC = () => {
     );
     setMovies(updatedMovies);
   };
+
+
 
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
@@ -51,14 +58,19 @@ const UpcomingMoviesPage: React.FC = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
+
   const displayedMovies = filterFunction(movies);
+
+
   return (
     <>
       <PageTemplate
-        title="Discover Movies"
+        title="Upcoming Movies"
         movies={displayedMovies}
         action={(movie: BaseMovieProps) => {
-          return <AddToFavouritesIcon {...movie} />
+          return <AddToMustWatchIcon movie={movie} />
         }}
       />
       <MovieFilterUI
