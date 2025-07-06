@@ -82,4 +82,9 @@ export interface DiscoverMovies {
     movie: MovieDetailsProps;
     images: MovieImage[];
   }
-  
+
+ export interface MustWatchContextInterface {
+    mustWatch: number[];
+    addToMustWatch: (movieId: number) => void;
+    removeFromMustWatch: (movieId: number) => void;
+}
