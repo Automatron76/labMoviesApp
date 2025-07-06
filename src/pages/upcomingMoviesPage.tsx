@@ -8,6 +8,10 @@ import MovieFilterUI, {
   genreFilter,
 } from "../components/movieFilterUI";
  import AddToMustWatchIcon from "../components/mustWatch/addToMustWatch";
+import Spinner from "../components/spinner";
+import { useQuery } from "react-query";
+import { DiscoverMovies } from "../types/interfaces";
+
 
 
 const titleFiltering = {
@@ -21,25 +25,27 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const UpcomingMoviesPage: React.FC = () => {
-  const [movies, setMovies] = useState<BaseMovieProps[]>([]);
-  const favourites = movies.filter(m => m.favourite)
 
-  
-  const { filterValues, setFilterValues, filterFunction } = useFiltering(
+
+const UpcomingMoviesPage: React.FC = () => {
+     const { data, isLoading, error } = useQuery<DiscoverMovies, Error>(
+    ["upcomingMovies"], // Query key as array
+    getUpcomingMovies
+  );
+      const [filteredMovies, setFilteredMovies] = useState<BaseMovieProps[]>([]);
+     const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
 
+useEffect(() => {
+    if (data?.results) {
+      setFilteredMovies(filterFunction(data.results));
+    }
+  }, [data, filterFunction]);
 
 
-  localStorage.setItem('favourites', JSON.stringify(favourites))
-  // New function
-  const addToFavourites = (movieId: number) => {
-    const updatedMovies = movies.map((m: BaseMovieProps) =>
-      m.id === movieId ? { ...m, favourite: true } : m
-    );
-    setMovies(updatedMovies);
-  };
+ if (isLoading) return <Spinner />;
+  if (error) return <div>{error.message}</div>;
 
 
 
@@ -52,23 +58,11 @@ const UpcomingMoviesPage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  useEffect(() => {
-    getUpcomingMovies().then((movies: BaseMovieProps[]) => {
-      setMovies(movies);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
-
-  const displayedMovies = filterFunction(movies);
-
-
   return (
     <>
       <PageTemplate
         title="Upcoming Movies"
-        movies={displayedMovies}
+        movies={filteredMovies}
         action={(movie: BaseMovieProps) => {
           return <AddToMustWatchIcon movie={movie} />
         }}

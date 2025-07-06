@@ -41,9 +41,9 @@ const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
               </Routes>
           </MoviesContextProvider>
-    </BrowserRouter>
+        </BrowserRouter>
      <ReactQueryDevtools initialIsOpen={false} />
-     </QueryClientProvider>
+      </QueryClientProvider>
   );
 };
 

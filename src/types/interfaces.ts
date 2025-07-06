@@ -18,6 +18,8 @@ export interface BaseMovieProps {
     genre_ids?: number[];
   }
 
+
+
   export interface GenreData {
   genres: {
     id: string;
@@ -31,6 +33,9 @@ export interface DiscoverMovies {
   total_results: number;
   results: BaseMovieProps[];
 }
+
+
+
 
 
   export type FilterOption = "title" | "genre";
