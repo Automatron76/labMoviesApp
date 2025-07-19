@@ -88,3 +88,17 @@ export interface DiscoverMovies {
     images: MovieImage[];
   }
 
+export interface ActorProps {
+id: number;
+name: string;
+profile_path: string;
+known_for_department: string;
+popularity: number;
+}
+
+export interface ActorApiResponse {
+  page: number;
+  results: ActorProps[];
+  total_pages: number;
+  total_results: number;
+}

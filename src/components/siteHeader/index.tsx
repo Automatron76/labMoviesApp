@@ -32,7 +32,7 @@ const SiteHeader: React.FC = () => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favourites" },
     { label: "Popular Movies", path: "/movies/popular" },
-    { label: "Actors", path: "/" },
+    { label: "Actors", path: "/actors" },
     { label: "TV Show", path: "/" },
   ];
 
