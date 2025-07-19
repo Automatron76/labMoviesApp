@@ -82,25 +82,27 @@ export const getUpcomingMovies = () => {
 
 export const getPopularMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&sort_by=vote_average.desc&vote_average.gte=8&vote_count.gte=500`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Unable to fetch popular movies. Response status: ${response.status}`);
     }
     return response.json();
+
   })
+  .then((json) => json.results)
   .catch((error) => {
     throw error;
   });
 };
 
-
-export const getTVSeries = (id: string) => {
+ 
+export const getPopularTVSeries = () => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
   ).then((response) => {
     if (!response.ok) {
-      throw new Error(`Failed to get TV series data. Response status: ${response.status}`);
+      throw new Error(`Failed to get TV series list. Response status: ${response.status}`);
     }
     return response.json();
   });
@@ -114,5 +116,22 @@ export const getTVSeriesImages = (id: string | number) => {
       throw new Error("failed to fetch TV series images");
     }
     return response.json();
-  }).then((json) => json.posters);
+  }).then((json) => json.posters)
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getPopularActors = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Unable to fetch popular actors. Response status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error;
+  });
 };

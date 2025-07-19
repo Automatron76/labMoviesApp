@@ -10,7 +10,6 @@ import MovieFilterUI, {
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import Spinner from "../components/spinner";
 import { useQuery } from "react-query";
-import { DiscoverMovies } from "../types/interfaces";
 
 const titleFiltering = {
   name: "title",
@@ -24,8 +23,8 @@ const genreFiltering = {
 };
 
 const PopularMoviesPage: React.FC = () => {
-  const { data, isLoading, error } = useQuery<DiscoverMovies, Error>(
-    ["popularMovies"], // Query key
+  const { data, isLoading, error } = useQuery<BaseMovieProps[], Error>(
+    ["popularMovies"], 
     getPopularMovies
   );
   const [filteredMovies, setFilteredMovies] = useState<BaseMovieProps[]>([]);
@@ -34,8 +33,9 @@ const PopularMoviesPage: React.FC = () => {
   );
 
   useEffect(() => {
-    if (data?.results) {
-      setFilteredMovies(filterFunction(data.results));
+    if (data) {
+      console.log("Popular Movies:",data)
+      setFilteredMovies(filterFunction(data));
     }
   }, [data, filterFunction]);
 

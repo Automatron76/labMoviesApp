@@ -75,7 +75,7 @@ export interface DiscoverMovies {
 
   export interface MovieImage {
     file_path: string;
-    aspect_ratio?: number; //some props are optional...
+    aspect_ratio?: number; 
     height?: number;
     iso_639_1?: string;
     vote_average?: number;
@@ -88,8 +88,3 @@ export interface DiscoverMovies {
     images: MovieImage[];
   }
 
- export interface MustWatchContextInterface {
-    mustWatch: number[];
-    addToMustWatch: (movieId: number) => void;
-    removeFromMustWatch: (movieId: number) => void;
-}
