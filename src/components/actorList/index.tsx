@@ -12,7 +12,7 @@ const ActorList:React.FC<ActorListProps> = ({ actors}) => {
     return(
         <Grid container spacing={2} justifyContent="center">
             {actors.map((actor) => (
-                <Grid key={actor.id} item>
+                <Grid key={actor.id} item xs={12} sm={6} md={4} lg={2}>
                     <ActorCard actor={actor} />
                     </Grid>
             ))}
