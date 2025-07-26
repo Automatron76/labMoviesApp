@@ -128,9 +128,9 @@ return fetch(
   });
 }
 
-export const getPopularTVSeries = () => {
+export const getPopularTVSeries = (page: number = 1) => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/tv/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to get TV series list. Response status: ${response.status}`);
