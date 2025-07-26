@@ -62,6 +62,10 @@ export interface DiscoverMovies {
     title: string;
     selectFavourite?: (movieId: number) => void; // Add this line
   }
+
+
+
+
   export interface MovieDetailsProps extends BaseMovieProps {
     genres: {
       id: number;
@@ -72,6 +76,7 @@ export interface DiscoverMovies {
        name: string      
     }[];
   }
+
 
   export interface MovieImage {
     file_path: string;
@@ -88,6 +93,8 @@ export interface DiscoverMovies {
     images: MovieImage[];
   }
 
+
+
 export interface ActorProps {
 id: number;
 name: string;
@@ -101,4 +108,15 @@ export interface ActorApiResponse {
   results: ActorProps[];
   total_pages: number;
   total_results: number;
+}
+
+export interface BaseTVProps {
+  id: number;
+  name: string;
+  poster_path: string | null;
+  overview: string;
+  first_air_date: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
 }
