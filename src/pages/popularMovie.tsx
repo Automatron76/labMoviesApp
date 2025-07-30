@@ -23,9 +23,10 @@ const genreFiltering = {
 };
 
 const PopularMoviesPage: React.FC = () => {
+  const [page, setPage] = useState(1)
   const { data, isLoading, error } = useQuery<BaseMovieProps[], Error>(
-    ["popularMovies"], 
-    getPopularMovies
+    ["popularMovies", page],  () => getPopularMovies(page), { keepPreviousData: true}
+     
   );
   const [filteredMovies, setFilteredMovies] = useState<BaseMovieProps[]>([]);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
@@ -65,7 +66,15 @@ const PopularMoviesPage: React.FC = () => {
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
       />
+    <div style={{ marginTop: "20px", textAlign: "center"}}>
+      <button onClick={() => setPage((p) => Math.max(p-1,1))}> Previous</button>
+      <span style={{ margin:"0 10px"}}>Page{page}</span>
+      <button onClick={() => setPage((p) => p+1)}> Next</button>
+      
+    </div>
+    
     </>
+    
   );
 };
 

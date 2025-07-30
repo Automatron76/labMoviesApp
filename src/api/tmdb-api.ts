@@ -80,9 +80,9 @@ export const getUpcomingMovies = () => {
       
   };
 
-export const getPopularMovies = () => {
+export const getPopularMovies = (page: number = 1) => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&sort_by=vote_average.desc&vote_average.gte=8&vote_count.gte=500`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&sort_by=vote_average.desc&vote_average.gte=8&vote_count.gte=500&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Unable to fetch popular movies. Response status: ${response.status}`);
@@ -99,9 +99,9 @@ export const getPopularMovies = () => {
  
 
 
-export const getPopularActors = () => {
+export const getPopularActors = (page: number = 1) => {
   return fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Unable to fetch popular actors. Response status: ${response.status}`);
