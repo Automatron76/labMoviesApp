@@ -38,8 +38,4 @@ Pagination and  parameterised UR have been implemented.
 data models for actors and tv shows have been created.
 
 
-![Popular Movies](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-![Actors](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-![Popular TV show](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
